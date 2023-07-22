@@ -5,15 +5,34 @@ function Greeting({ name }) {
 function DisplayResults({ title, description, mobileSize }) {
   return (
     <>
-      <p>
-        <a href="#" className="link-underline-primary link-underline link-underline-opacity-0">{title}</a>
-      </p>
-      <p>{description}</p>
+      <span>
+        Previewer
+      </span>
+      <div className={`${ mobileSize === 'mobile' ? 'w375': ''}`}>
+        <p className="m-0">
+          <a href="#" className="link-underline-primary MBeuO link-underline cas">{title}</a>
+        </p>
+        <p className="text-wrap-content text-start pkphOe">{description}</p>
+      </div>
     </>
   )
 }
 function FormContent({ title, description, mobileSize, onTitleSet, onDescriptionSet, onSetMobileSize }) {
- 
+
+  function ristrict(event, type) {
+    if (type === 'title' && event.target.value.length > 60) {
+      return;
+    }
+    if (type === 'title') {
+      return onTitleSet(event.target.value);
+    }
+    if (type === 'description' && event.target.value.length > 160) {
+      return;
+    }
+    if (type === 'description') {
+      return onDescriptionSet(event.target.value);
+    }
+  }
   function setHight(e) {
     const textareaEl = document.getElementById('textAreaField')
     textareaEl.style.height = e.target.scrollHeight + 'px';
@@ -24,14 +43,14 @@ function FormContent({ title, description, mobileSize, onTitleSet, onDescription
         <label className="form-label">
           Title
         </label>
-        <input type="text" className={`form-control ${title.length > 60 ? 'form-control-invalid' : ''}`} onChange={(e) => onTitleSet(e.target.value)} value={title} />
+        <input type="text" className={`form-control ${title.length > 60 ? 'form-control-invalid' : ''}`} onChange={(e) => ristrict(e, 'title')} value={title} />
         Title length - {title.length} / maxmium length - 60 is good
       </div>
       <div className="mb-3">
         <label className="form-label">
           Description
         </label>
-        <textarea className={`form-control overflow-hidden ${description.length > 160 ? 'form-control-invalid' : ''}`} style={{resize: 'none'}} id="textAreaField" value={description} onInput={(e) => setHight(e)} onChange={(e) => onDescriptionSet(e.target.value)}></textarea>
+        <textarea className={`form-control overflow-hidden ${description.length > 160 ? 'form-control-invalid' : ''}`} style={{ resize: 'none' }} id="textAreaField" value={description} onInput={(e) => setHight(e)} onChange={(e) => ristrict(e, 'description')}></textarea>
         Description length - {description.length} / maxmium length - 160 is good
       </div>
       <div>
@@ -69,7 +88,7 @@ function Holder() {
             mobileSize={mobileSize}
           />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-6 overflow-hidden">
           <DisplayResults
             title={title}
             description={description}

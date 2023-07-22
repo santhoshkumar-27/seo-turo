@@ -62,3 +62,42 @@ ul {
 .form-control-invalid:focus {
   box-shadow: 0 0 0 0.25rem var(--bs-form-invalid-border-color);
 }
+
+.text-wrap-content {
+  white-space: break-spaces;
+  word-wrap: break-word;
+}
+
+.cas {
+  margin-bottom: 3px !important;
+  text-decoration: none !important;
+}
+
+.cas:hover {
+  text-underline-offset: 2px;
+  text-decoration: underline !important;
+}
+
+p {
+  color: #4d5156;
+}
+
+a {
+  color: #1a0dab !important;
+}
+
+.pkphOe {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.MBeuO {
+  font-family: arial,sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.w375 {
+  width: 378px;
+  margin-inline: auto;
+}
